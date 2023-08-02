@@ -27,18 +27,19 @@ sols = [];
 #        return True;
 #    return False;
     
-
+# Generate a list of varieties to check supersingularity for
 for p in range(1, 20):
     for q in range(p, 20):
         for r in range(q, 20):
             for w in Q:
                 N = (p, q, r);
-                if gcd(N) == 1 and (N, w) not in sols and not isTrivial(N, w) and not singular(N, w):
+                if primitiveExp(N) and gcd(N) == 1 and (N, w) not in sols and not isTrivial(N, w) and not singular(N, w):
                     sols.append((N, w));
                 
 print(len(sols), "possible varieties\n");
 count = 0;
 
+# Print the supersingular varieties from the list generated above
 for sol in sols:
     N = sol[0];
     w = sol[1]
@@ -49,4 +50,3 @@ for sol in sols:
         
 
 print(count, "supersingular varieties");
-

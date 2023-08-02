@@ -55,6 +55,17 @@ def isTrivial(N, p):
         return True;
     return False;
 
+# Reduce the exponent set to an equivalent set
+def reduceExp(N):
+    newN = tuple(0 for i in range(len(N)));
+    for i in range(len(N)):
+        Li = LCM_list(N[:i] + N[i+1:]);
+        newN[i] = gcd(Li, N[i]);
+    return newN;
+        
+# Check if N is a set of primitive (reduced) exponents
+def primitiveExp(N):
+    return reduceExp(N) == N;
 
 #Returns if a diagonal hypersurface with exponent list N is superingular over F_p
 def supersingular(N, p):
